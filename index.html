@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Portal</title>
+  <style>
+    body {
+      background: url('https://i.imgur.com/xIhtDMy.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-box {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      width: 300px;
+      text-align: center;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      background: #00c3ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00c3ff, 0 0 20px #00c3ff;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #009ecf;
+      transform: scale(1.05);
+    }
+
+    .extra-buttons {
+      margin-top: 20px;
+    }
+
+    .extra-buttons button {
+      background: transparent;
+      border: 1px solid #00c3ff;
+      color: #00c3ff;
+      margin: 5px;
+      padding: 8px 15px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .extra-buttons button:hover {
+      background: #00c3ff;
+      color: white;
+    }
+
+    #spinner {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #00c3ff;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box" id="loginBox">
+    <h2>Login</h2>
+    <form onsubmit="return checkLogin()">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <button type="submit">Login</button>
+    </form>
+    <div id="spinner" class="loader"></div>
+
+    <div class="extra-buttons">
+      <button onclick="forgotPassword()">Forgot Password?</button>
+      <button onclick="signUp()">Sign Up</button>
+    </div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      document.getElementById("spinner").style.display = "block";
+
+      setTimeout(() => {
+        document.getElementById("spinner").style.display = "none";
+
+        if ((username === "admin" && password === "1234") ||
+            (username === "guest" && password === "abcd")) {
+          alert("Login successful!");
+          window.location.href = "https://ravemaster.store/chili"; // Your Canva page
+        } else {
+          alert("Incorrect username or password!");
+        }
+      }, 2000);
+      return false;
+    }
+
+    function forgotPassword() {
+      alert("Redirecting to password recovery page...");
+      // Example: window.location.href = "https://yourdomain.com/forgot-password";
+    }
+
+    function signUp() {
+      alert("Redirecting to sign-up page...");
+      // Example: window.location.href = "https://yourdomain.com/sign-up";
+    }
+  </script>
+
+</body>
+</html>
